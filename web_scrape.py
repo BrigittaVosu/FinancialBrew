@@ -8,24 +8,37 @@ req = urllib.request.Request(rank_page, headers={'User-Agent': 'Mozilla/5.0 (Mac
 page = urllib.request.urlopen(req)
 soup = BeautifulSoup(page, 'html.parser')
 
-perfReturns = soup.find('section', attrs={'class': 'Pb(20px) smartphone_Px(20px) smartphone_Mt(20px)'}).find_all('span')
+channels = soup.find('div', attrs={'class': 'Mb(25px)'}).find_all('div')
 
-# print(perfReturns)
+# malox_raw = row.find('div', attrs={'style': 'float: left; width: 80px;'})
+# if malox_raw is not None:
+#     malox = malox_raw.span.text.strip()
 
-# file = open('firstextract.csv', 'wt')
-# writer = csv.writer(file)
+#file = open('firstextract.csv', 'wt')
+#writer = csv.writer(file)
 
 # #write title row
 # writer.writerow(['Return', 'MALOX', 'Category'])
 
-for row in perfReturns:
-    realReturn = row.find('span', attrs={'class': 'W(50%) D(b) Fl(start) Ta(s)'})
-# #     MALOX = row.find('div', attrs={'style': 'float: left; width: 80px;'}).span.text.strip()
-# #     category = row.find_all('div', attrs={'style': 'float: left; width: 150px;'})[1].span.text.strip()
+for channel in channels:
+    #username = channel.find('span', attrs={'class': 'Fl(start)'}).a.text.strip()
+    #uploads = channel.find('span', attrs={'class': 'Fl(start)'})
+    #if uploads is not None:
+        #uploads = uploads.span.text.strip()
+    views = channel.find('span', attrs={'class': 'Fl(end)'})
+    for view in views:
+        if view is not None:
+            print(view)
+    #if views is None:
+        #print("Yes found it")
 
-print(realReturn)
+    #else:
+        #print("Didn't find it")
+        
+    #    views = views.span.text.strip()
+    #views = channel.find_all('span', attrs={'class': 'Fl(start)'}).span.text.strip()
 
-# #     print (realReturn + ' ' + MALOX + ' ' + category)
-# #     writer.writerow([realReturn.encode('utf-8'), MALOX.encode('utf-8'), category.encode('utf-8')])
+    #print (type(uploads))
+    #writer.writerow([uploads.encode('utf-8')])
 
-# file.close()
+#file.close() 
