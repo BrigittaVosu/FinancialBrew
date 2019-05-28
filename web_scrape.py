@@ -22,23 +22,20 @@ channels = soup.find('div', attrs={'class': 'Mb(25px)'}).find_all('div')
 
 for channel in channels:
     #username = channel.find('span', attrs={'class': 'Fl(start)'}).a.text.strip()
-    #uploads = channel.find('span', attrs={'class': 'Fl(start)'})
-    #if uploads is not None:
-        #uploads = uploads.span.text.strip()
+    uploads = channel.find('span', attrs={'class': 'Fl(start)'})
+    if uploads is not None:
+        uploads = uploads.span.text.strip()
+    
     views = channel.find('span', attrs={'class': 'Fl(end)'})
-    for view in views:
-        if view is not None:
-            print(view)
-    #if views is None:
-        #print("Yes found it")
-
-    #else:
-        #print("Didn't find it")
+    if views is not None:
+        for view in views:
+            if view is not None:
+                print(view)
         
-    #    views = views.span.text.strip()
+    #views = views.span.text.strip()
     #views = channel.find_all('span', attrs={'class': 'Fl(start)'}).span.text.strip()
 
-    #print (type(uploads))
+    #print (uploads + ' ' + views)
     #writer.writerow([uploads.encode('utf-8')])
 
 #file.close() 
